@@ -68,4 +68,16 @@ const sendTokenResponse = (user, statusCode, res) => {
     if(process.env.NODE_ENV === 'production') {
         options.secure = true;
     }
-}
+};
+
+// @desc    Get current logged in user
+// @route   GET /api/v1/auth/me
+// @access  Private
+exports.getMe = asyncHandler(async (req, res, next) => {
+    const user = await User.findById(req.user.id);
+
+    res.status(200).json({
+        suceess: true,
+        data: user
+    })
+})
