@@ -71,10 +71,6 @@ CourseSchema.post('save', function() {
     this.constructor.getAverageCost(this.bootcamp);
 });
 
-console.log(this);
-console.log(this.constructor);
-
-
 // Call getAverageCost before remove
 CourseSchema.pre('deleteOne', { document: false, query: true }, async function() {
     const doc = await this.model.findOne(this.getQuery());
